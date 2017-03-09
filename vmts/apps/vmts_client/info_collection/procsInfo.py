@@ -1,0 +1,25 @@
+# -*- coding: utf-8 -*-
+
+import os
+import re
+import time
+
+def get_pid_list():
+    pid = []
+    for d in os.listdir('/proc'):
+        if re.match(r'^\d*$', d):
+            pid.append(d)
+
+    return pid
+
+def all_proc_detail():
+    pass
+
+def resolve_status():
+    pass
+
+
+if __name__ == "__main__":
+    t1 = time.time()
+    print get_pid_list()
+    print time.time() - t1

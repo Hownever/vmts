@@ -1,0 +1,206 @@
+{% extends "main.html" %} {% block PageContent %}
+<div class="page-inner">
+    <div class="page-title">
+        <h3>Dashboard</h3>
+        <div class="page-breadcrumb">
+            <ol class="breadcrumb">
+                <li><a href="/">Home</a></li>
+                <li class="active">Dashboard</li>
+            </ol>
+        </div>
+    </div>
+    <div id="main-wrapper">
+        <div class="row">
+            <div class="col-lg-3 col-md-6">
+                <div class="panel info-box panel-white">
+                    <div class="panel-body">
+                        <div class="info-box-stats">
+                            <p class="counter">12</p>
+                            <span class="info-box-title">Testing Equipment</span>
+                        </div>
+                        <div class="info-box-icon">
+                            <i class="icon-layers"></i>
+                        </div>
+                        <div class="info-box-progress">
+                            <div class="progress progress-xs progress-squared bs-n">
+                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="panel info-box panel-white">
+                    <div class="panel-body">
+                        <div class="info-box-stats">
+                            <p class="counter">324</p>
+                            <span class="info-box-title">Server Views</span>
+                        </div>
+                        <div class="info-box-icon">
+                            <i class="icon-eye"></i>
+                        </div>
+                        <div class="info-box-progress">
+                            <div class="progress progress-xs progress-squared bs-n">
+                                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="panel info-box panel-white">
+                    <div class="panel-body">
+                        <div class="info-box-stats">
+                            <p><span class="counter">13</span></p>
+                            <span class="info-box-title">TestCase</span>
+                        </div>
+                        <div class="info-box-icon">
+                            <i class="icon-docs"></i>
+                        </div>
+                        <div class="info-box-progress">
+                            <div class="progress progress-xs progress-squared bs-n">
+                                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="panel info-box panel-white">
+                    <div class="panel-body">
+                        <div class="info-box-stats">
+                            <p class="counter">45</p>
+                            <span class="info-box-title">New Message Recieved</span>
+                        </div>
+                        <div class="info-box-icon">
+                            <i class="icon-envelope"></i>
+                        </div>
+                        <div class="info-box-progress">
+                            <div class="progress progress-xs progress-squared bs-n">
+                                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Row -->
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="panel panel-white" style="height:100%">
+                    <div class="row">
+                        <div class="col-sm-8" id="Server-load">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">Server Load</h4>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-sm-2 hc-thumbnail-view" id="hc-thumbnail-group">
+                                        <div class="row hc-thumbnail-button">
+                                            <div class="col-sm-5 hc-thumbnail" id="hc-thumbnail-cpu"></div>
+                                            <div class="col-sm-7 hc-thumbnail-label">
+                                                <div>CPU</div>
+                                                <div>21% 3.31Ghz</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-1 hc-divider"></div>
+                                    <div class="col-sm-9 hc-detail-view">
+                                        <div id="highchart-cpu"></div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="stats-info">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">Device List</h4>
+                                    <input type="text" class="device-search" id="device-search">
+                                    <span style="float:right;margin-right:10px;">filter: </span>
+                                </div>
+                                <div class="panel-body" id="dev-panel-body">
+                                    <ul id="device-list" class="list-unstyled device-list-ul">
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div tabindex="-1" id="devDetailModal" class="modal fade" role="dialog" aria-hidden="true" aria-labelledby="DeviceDetailModalLabel" style="display: none;">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button class="close" aria-label="Close" type="button" data-dismiss="modal">
+                                        <span aria-hidden="true">x</span>
+                                    </button>
+                                    <h4 class="modal-title" id="devDetailModalLabel">Device Detail</h4>
+                                </div>
+                                <div class="modal-body" id="devDetailModalContent">
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-success" type="button" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-lg-12 col-md-12">
+                <div class="panel panel-white">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">Service Status</h4>
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive project-stats">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Service</th>
+                                        <th>Status</th>
+                                        <th>Test</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>Vion Maintaince</td>
+                                        <td><span class="label label-success">Running</span></td>
+                                        <td><span class="label label-info">Ready</span></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">2</th>
+                                        <td>Intelligent Traffic Management Platform 2.1</td>
+                                        <td><span class="label label-success">Running</span></td>
+                                        <td><span class="label label-info">Ready</span></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>Vion Data Receiver Service 2.6</td>
+                                        <td><span class="label label-warning">Fatal</span></td>
+                                        <td><span class="label label-danger">Finished</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Main Wrapper -->
+</div>
+<div id="ws" data-url="{{ ws_url }}"></div>
+<!-- Page Inner -->
+{% end %} {% block AppendScript %}
+<script src="{{ static_url("assets/plugins/highcharts/highcharts.js ") }}"></script>
+<script src="{{ static_url("assets/plugins/highcharts/exporting.js ") }}"></script>
+<script src="{{ static_url("js/context.js ") }}"></script>
+<script src="{{ static_url("js/dashboard-ws.js ") }}"></script>
+<script src="{{ static_url("js/dashboard-highchart-custom.js ")}}"></script>
+{% end %}

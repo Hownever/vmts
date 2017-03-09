@@ -1,0 +1,15 @@
+{
+  "logger":{
+    "debug": true,
+    "persistence_path":{
+      "tornado": ".",
+      "model": ".",
+      "webservice": ".",
+      "rpc_protocol": ".",
+      "error": "."
+    }
+  },
+  "device":{
+    "dev_id": "root_server_#0"
+  }
+}
