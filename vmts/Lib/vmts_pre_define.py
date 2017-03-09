@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
 
-
 import os
 import json
 
-from vmts_const import pSlash, pre_define_base_dir as pdbd
+from vmts_const import pSlash, pre_define_conf_base_dir as pdbd
 from vmts_dict_objectified import DictObject
 
 
@@ -219,7 +218,7 @@ class Predefine(object):
         for r, d, f in os.walk(self.base_dir):
             for i in f:
                 try:
-                    root = os.path.dirname(i)
+                    root = r
                     with open(root + pSlash + i) as fl:
                         dict_obj = json.loads(fl.read())
                         self._module.add((i.split('.')[0], i.split('.')[1], root))

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import platform
+import os
 
 # Platform
 
@@ -9,4 +10,5 @@ pSlash = '\\' if pre_platform == 0x00 else '/'
 
 # Pre_define
 
-pre_define_base_dir = pSlash.join(['', '..', 'conf', ''])
+pre_define_conf_base_dir = pSlash.join(['', '..', 'conf', ''])
+basic_lib_dir = os.path.dirname(__file__)
