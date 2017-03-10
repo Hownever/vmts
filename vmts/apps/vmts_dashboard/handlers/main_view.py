@@ -28,3 +28,4 @@ class SessionValidationHandler(RequestHandler):
 class LoginHandler():
 
     def get(self):
+        pass
