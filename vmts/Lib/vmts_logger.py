@@ -4,7 +4,7 @@ import os
 import logging
 import logging.handlers
 
-from vmts_const import pSlash
+from vmts_settings import pSlash
 from vmts_pre_define import pre_init
 
 log_relative_path = '{slash}'.format(slash=pSlash).join(['', '..', 'log', ''])

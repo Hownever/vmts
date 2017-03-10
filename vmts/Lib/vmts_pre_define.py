@@ -3,7 +3,7 @@
 import os
 import json
 
-from vmts_const import pSlash, pre_define_conf_base_dir as pdbd
+from vmts_settings import pSlash, pre_define_conf_base_dir as pdbd
 from vmts_dict_objectified import DictObject
 
 
