@@ -7,6 +7,8 @@ from vmts_pre_define import pre_init
 from vmts_logger import VmtsLogger
 from vmts_exceptions import RpcValidationError, LackParameterError, TransformJsonError
 
+__all__ = ["JsonRpcProtocolConstructor"]
+
 
 def gen_id(dev_id=None):
     """
@@ -46,19 +48,15 @@ def check_recv(func):
             :return: <bool>.
             """
 
-            l = len(key_lst)
-            tmp = 0
+            if len(key_lst) != len(src_dict.keys()):
+                return False
+
             for i in src_dict:
                 if i not in key_lst:
                     return False
                 else:
-                    key_lst.pop(i)
-                    tmp += 1
-
-            if tmp == l:
-                return True
-            else:
-                return False
+                    key_lst.remove(i)
+            return True
 
         try:
             recv_json = json.loads(recv)
@@ -97,21 +95,19 @@ def check_args(func):
         """
         VmtsLogger('rpc_protocol').debug("self:{self}; args:{args}; func:{func} in decorator check_args".format(
             self=self, args=args, func=func.__name__))
-        try:
-            if self._type == 'request':
-                if len(args) + len(argv) == 2:
-                    return func(self, args, argv)
-            elif self._type == 'response':
-                if len(args) + len(argv) == 3:
-                    return func(self, args, argv)
-            else:
-                raise LackParameterError
-        except IndexError:
+
+        if self._type == 'request':
+            if len(args) + len(argv) == 2:
+                return func(self, args, argv)
+        elif self._type == 'response':
+            if len(args) + len(argv) == 3:
+                return func(self, args, argv)
+        else:
             raise LackParameterError
     return _deco
 
 
-class WebsocketJsonRpcProtocolConstructor(object):
+class JsonRpcProtocolConstructor(object):
     """
     with WebsocketProtocolConstructor(uid, _type) as ins:
             do something
@@ -123,7 +119,7 @@ class WebsocketJsonRpcProtocolConstructor(object):
 
     def __init__(self, _type):
 
-        self.instance = WebsocketJsonRpcProtocol(_type=_type)
+        self.instance = JsonRpcProtocol(_type=_type)
 
     def __enter__(self):
         """
@@ -147,7 +143,7 @@ class WebsocketJsonRpcProtocolConstructor(object):
             ))
 
 
-class WebsocketJsonRpcProtocol(object):
+class JsonRpcProtocol(object):
     """
     Definition of Json-rpc protocol structure.
     """
@@ -207,4 +203,4 @@ class WebsocketJsonRpcProtocol(object):
 
     @staticmethod
     def _ver():
-        return WebsocketJsonRpcProtocol.version
+        return JsonRpcProtocol.version

@@ -37,20 +37,22 @@ class VmtsLogger(object):
     Vmts logger wrap-class.
     """
 
-    formatter = '%(levelname)s - %(asctime)s %(name)s: %(message)s'
-    formmater_debug = '%(levelname)s - %(asctime)s %(name)s: %(message)s\n\tCall Stack Info:\n\t\tfunction: ' \
-                      '%(funcName)s\n\t\tmodule: %(module)s\n\t\tfile: %(pathname)s'
-
     def __init__(self, name, base_dir=os.path.dirname(__file__) + log_relative_path):
+        self.formatter = '%(levelname)s - %(asctime)s %(name)s: %(message)s'
+        self.formmater_debug = '%(levelname)s - %(asctime)s %(name)s: %(message)s\n\tCall Stack Info:\n\t\tfunction: ' \
+                          '%(funcName)s\n\t\tmodule: %(module)s\n\t\tfile: %(pathname)s'
 
         self.pre_conf = pre_init().get_module('vmts_conf')
         self.name = name
         self.fp = base_dir + name + '.log'
-        self.debug = self.pre_conf.logger.debug
-        self.level = logging.DEBUG if self.debug else logging.INFO
+        self.debug_mode = self.pre_conf.logger.debug
+        self.level = logging.DEBUG if self.debug_mode else logging.INFO
         self.logger = logging.getLogger()
         self.logger.setLevel(self.level)
-        self.formatter = VmtsLogger.formatter if not self.debug else VmtsLogger.formmater_debug
+        self.formatter = self.formatter if not self.debug_mode else self.formmater_debug
+
+        if not os.path.exists(self.fp):
+            os.makedirs(base_dir)
 
         file_handle = logging.handlers.TimedRotatingFileHandler(self.fp, when='D', backupCount=5, encoding='utf-8')
         file_handle.setLevel(self.level)
