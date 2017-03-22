@@ -3,7 +3,6 @@
 import tornado.gen
 from tornado.web import RequestHandler
 
-
 try:
     from vmts_pre_define import pre_init
     from vmts_logger import VmtsLogger
@@ -11,21 +10,18 @@ try:
 except ImportError:
     raise ImportError('Python environment had not be initialized.')
 
+__all__ = ["BaseHandler"]
 
-class BaseHandler(RequestHandler):
-
-    # todo: basic handler.
+class PreHandler(RequestHandler):
     pass
 
 
 class SessionValidationHandler(RequestHandler):
-
     @tornado.gen.coroutine
     def check_current_user(self):
-
         yield
 
-class LoginHandler():
 
-    def get(self):
-        pass
+class BaseHandler(PreHandler, SessionValidationHandler):
+    # todo: basic handler.
+    pass
