@@ -3,7 +3,7 @@
 import time
 import json
 
-from vmts_pre_define import pre_init
+from vmts_pre_define import cfg
 from vmts_logger import VmtsLogger
 from vmts_exceptions import RpcValidationError, LackParameterError, TransformJsonError
 
@@ -18,7 +18,7 @@ def gen_id(dev_id=None):
     """
 
     if dev_id is None:
-        dev_id = pre_init().get_module('vmts_conf').device.dev_id
+        dev_id = cfg.get_module('vmts_conf').device.dev_id
     return dev_id + '-' + str(time.time()).replace('.', '')
 
 

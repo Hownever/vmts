@@ -6,6 +6,8 @@ import json
 from vmts_settings import pSlash, pre_define_conf_base_dir as pdbd
 from vmts_dict_objectified import DictObject
 
+__all__ = ["cfg"]
+
 
 def singleton(cls):
     """
@@ -255,6 +257,14 @@ class Predefine(object):
 
         return None
 
+    def detect(self):
+        """
+        detect config file variation.
+        :return: None
+        """
+
+
+
 
 def pre_init():
     """
@@ -264,3 +274,5 @@ def pre_init():
 
     base_dir = os.path.dirname(__file__) + pdbd
     return Predefine(base_dir=base_dir)
+
+cfg = pre_init()

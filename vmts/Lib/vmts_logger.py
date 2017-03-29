@@ -5,7 +5,7 @@ import logging
 import logging.handlers
 
 from vmts_settings import pSlash
-from vmts_pre_define import pre_init
+from vmts_pre_define import cfg
 
 log_relative_path = '{slash}'.format(slash=pSlash).join(['', '..', 'log', ''])
 
@@ -114,7 +114,7 @@ def logger_init():
     :return: singleton instance of VmtsLogger class.
     """
 
-    paths = pre_init().get_module('vmts_conf').logger.persistence_path
+    paths = cfg.get_module('vmts_conf').logger.persistence_path
     for i in paths:
         if paths[i] == '.':
             VmtsLogger(i)

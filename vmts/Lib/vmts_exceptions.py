@@ -2,9 +2,9 @@
 
 
 from vmts_logger import VmtsLogger
-from vmts_pre_define import pre_init
+from vmts_pre_define import cfg
 
-config = pre_init().get_module('vmts_conf')
+config = cfg.get_module('vmts_conf')
 
 
 class VmtsExceptions(Exception):

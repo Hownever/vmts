@@ -4,7 +4,7 @@ import tornado.gen
 from tornado.web import RequestHandler
 
 try:
-    from vmts_pre_define import pre_init
+    from vmts_pre_define import cfg
     from vmts_logger import VmtsLogger
     from vmts_exceptions import *
 except ImportError:

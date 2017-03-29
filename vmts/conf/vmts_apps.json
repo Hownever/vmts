@@ -1,3 +1,14 @@
 {
-  "placeholder": true
+  "dashboard":{
+    "port": 80,
+    "SuperAdmin": "admin",
+    "SuperPwd": "admin",
+    "Guest": "Enable",
+    "production_environment": false,
+    "settings": {
+      "cookie_secret": "aRcMUP3jR/GN1Kqecke0Zr9zK66y0UBPo0TXgYfWP4s=",
+      "login_url": "/login",
+      "xsrf_cookies": false
+    }
+  }
 }
