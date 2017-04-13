@@ -2,7 +2,6 @@
 
 from pre_handler import BaseHandler
 
-
 try:
     from vmts_pre_define import cfg
     from vmts_logger import VmtsLogger
@@ -11,29 +10,24 @@ except ImportError:
     raise ImportError('Python environment had not be initialized.')
 
 
-class LoginHandler(BaseHandler):
+class UserInfo(BaseHandler):
 
     def get(self):
 
+        # todo: return user info
         pass
-
-
-class LogoutHandler(BaseHandler):
-
-    def get(self):
-
-        self.render("login.html")
 
     def post(self):
 
-        user = self.get_argument("user")
-        pwd = self.get_argument("password")
+        # todo: create new user info
+        pass
 
+    def put(self):
 
+        # todo: update user info
+        pass
 
+    def delete(self):
 
-class IndexHandler(BaseHandler):
-
-    def get(self):
-
+        # todo: delete user info
         pass

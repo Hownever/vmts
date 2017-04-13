@@ -42,7 +42,7 @@ class VmtsLogger(object):
         self.formmater_debug = '%(levelname)s - %(asctime)s %(name)s: %(message)s\n\tCall Stack Info:\n\t\tfunction: ' \
                           '%(funcName)s\n\t\tmodule: %(module)s\n\t\tfile: %(pathname)s'
 
-        self.pre_conf = pre_init().get_module('vmts_conf')
+        self.pre_conf = cfg.get_module('vmts_conf')
         self.name = name
         self.fp = base_dir + name + '.log'
         self.debug_mode = self.pre_conf.logger.debug
