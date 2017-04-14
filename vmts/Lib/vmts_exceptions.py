@@ -1,10 +1,6 @@
 # -*- coding: utf-8 -*-
 
-
 from vmts_logger import VmtsLogger
-from vmts_pre_define import pre_init
-
-config = pre_init().get_module('vmts_conf')
 
 
 class VmtsExceptions(Exception):
@@ -13,7 +9,12 @@ class VmtsExceptions(Exception):
     """
 
     def __init__(self, msg):
-        VmtsLogger('error').error(msg)
+        self.msg = msg
+        VmtsLogger('error').error(self.msg)
+
+    def __str__(self):
+
+        return self.msg
 
 
 class RpcValidationError(VmtsExceptions):
@@ -47,3 +48,14 @@ class TransformJsonError(VmtsExceptions):
     def __init__(self):
         self.msg = 'Unable to transform json-string into python-dict.'
         super(TransformJsonError, self).__init__(self.msg)
+
+
+class DefaultConnectionPoolInitializationError(VmtsExceptions):
+    """
+    Redis connection-pool instance hadn`t been initialized yet.
+    will be raised when trying to initialize Redis class before the initialization of Default Connection-pool.
+    """
+
+    def __init__(self):
+        self.msg = 'Default ConnectionPool hadn`t been initialized yet.'
+        super(DefaultConnectionPoolInitializationError, self).__init__(self.msg)

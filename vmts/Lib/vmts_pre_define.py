@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 
-
 import os
 import json
 
-from vmts_const import pSlash, pre_define_base_dir as pdbd
+from vmts_settings import pSlash, pre_define_conf_base_dir as pdbd
 from vmts_dict_objectified import DictObject
+
+__all__ = ["cfg"]
 
 
 def singleton(cls):
@@ -219,7 +220,7 @@ class Predefine(object):
         for r, d, f in os.walk(self.base_dir):
             for i in f:
                 try:
-                    root = os.path.dirname(i)
+                    root = r
                     with open(root + pSlash + i) as fl:
                         dict_obj = json.loads(fl.read())
                         self._module.add((i.split('.')[0], i.split('.')[1], root))
@@ -256,6 +257,14 @@ class Predefine(object):
 
         return None
 
+    def detect(self):
+        """
+        detect config file variation.
+        :return: None
+        """
+
+
+
 
 def pre_init():
     """
@@ -265,3 +274,5 @@ def pre_init():
 
     base_dir = os.path.dirname(__file__) + pdbd
     return Predefine(base_dir=base_dir)
+
+cfg = pre_init()
