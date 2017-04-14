@@ -5,10 +5,17 @@
     "SuperPwd": "admin",
     "Guest": "Enable",
     "production_environment": false,
+    "debug": true,
     "settings": {
       "cookie_secret": "aRcMUP3jR/GN1Kqecke0Zr9zK66y0UBPo0TXgYfWP4s=",
       "login_url": "/login",
       "xsrf_cookies": false
+    }
+  },
+  "backend":{
+    "port": 5000,
+    "debug": true,
+    "settings":{
     }
   }
 }

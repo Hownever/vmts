@@ -1,15 +1,12 @@
 # -*- coding: utf-8 -*-
 
-import os
-
+import tornado.httpserver
 import tornado.web
 import tornado.ioloop
-import tornado.httpserver
 
 try:
     from vmts_pre_define import cfg
     from vmts_logger import VmtsLogger
-    from vmts_exceptions import *
 except ImportError:
     raise ImportError('Vmts environment had not be initialized.')
 
@@ -20,22 +17,21 @@ config = cfg.get_module('vmts_apps')
 
 def run():
     """
-    vmts dashboard entrance function.
+    vmts database backend entrance function.
     :return: None
     """
 
-    settings = config.dashboard.settings
+    settings = config.backend.settings
     app = tornado.web.Application(
         handlers=urls,
-        template_path=os.path.join(os.path.dirname(__file__), "templates"),
-        static_path=os.path.join(os.path.dirname(__file__), "static"),
-        debug=config.dashboard.debug,
+        debug=config.backend.debug,
         **settings
     )
 
     http_server = tornado.httpserver.HTTPServer(app, xheaders=True)
-    http_server.listen(config.dashboard.port)
+    http_server.listen(config.backend.port)
     tornado.ioloop.IOLoop.instance().start()
+    VmtsLogger('info').info('Vmts database backend started.')
 
 if __name__ == "__main__":
     run()

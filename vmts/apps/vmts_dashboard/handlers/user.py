@@ -7,7 +7,7 @@ try:
     from vmts_logger import VmtsLogger
     from vmts_exceptions import *
 except ImportError:
-    raise ImportError('Python environment had not be initialized.')
+    raise ImportError('Vmts environment had not be initialized.')
 
 
 class UserInfo(BaseHandler):
