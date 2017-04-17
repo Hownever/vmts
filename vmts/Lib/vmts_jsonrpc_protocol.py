@@ -109,7 +109,7 @@ def check_args(func):
 
 class JsonRpcProtocolConstructor(object):
     """
-    with WebsocketProtocolConstructor(uid, _type) as ins:
+    with JsonRpcProtocolConstructor(uid, _type) as ins:
             do something
 
         when exit <with> statments, del the WebsocketProtocol instance.
@@ -124,7 +124,7 @@ class JsonRpcProtocolConstructor(object):
     def __enter__(self):
         """
         overload __enter__ method.
-        return WebsocketProtocol instance.
+        return JsonRpcProtocol instance.
         :return: <object>.
         """
 

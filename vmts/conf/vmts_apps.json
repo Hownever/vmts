@@ -15,6 +15,7 @@
   "backend":{
     "port": 5000,
     "debug": true,
+    "request_user_agent": "VMTS/1.0",
     "settings":{
     }
   }

@@ -59,3 +59,25 @@ class DefaultConnectionPoolInitializationError(VmtsExceptions):
     def __init__(self):
         self.msg = 'Default ConnectionPool hadn`t been initialized yet.'
         super(DefaultConnectionPoolInitializationError, self).__init__(self.msg)
+
+
+class LackofHTTPHeadersError(VmtsExceptions):
+    """
+    Lack of a http-headers object, usually must be a dict or tornado.httputil.HTTPHeaders object.
+    will be raised when trying to construct a header before sending a HTTP request by giving a wrong type of headers.
+    """
+
+    def __init__(self):
+        self.msg = 'The type of given headers must be dict or HTTPHeaders instance.'
+        super(LackofHTTPHeadersError, self).__init__(self.msg)
+
+
+class UnmatchedUidError(VmtsExceptions):
+    """
+    An unmatched uid found in the response post.
+    will be raised when resolving the response json-rpc post.
+    """
+
+    def __init__(self):
+        self.msg = 'An unmatched uid founded.'
+        super(UnmatchedUidError, self).__init__(self.msg)

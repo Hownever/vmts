@@ -7,7 +7,7 @@ try:
     from vmts_pre_define import cfg
     from vmts_logger import VmtsLogger
     from vmts_exceptions import *
-except ImportError:
+except:
     raise ImportError('Vmts environment had not be initialized.')
 
 
