@@ -81,3 +81,15 @@ class UnmatchedUidError(VmtsExceptions):
     def __init__(self):
         self.msg = 'An unmatched uid founded.'
         super(UnmatchedUidError, self).__init__(self.msg)
+
+
+class FieldValidationError(VmtsExceptions):
+    """
+    Vmts orm validate field failed.
+    will be raised before any commits transmited to vmts-orm-client.-
+    """
+
+    def __init__(self, errors):
+        err = [str(i) for i in errors]
+        self.msg = '||'.join(err)
+        super(FieldValidationError, self).__init__(self.msg)

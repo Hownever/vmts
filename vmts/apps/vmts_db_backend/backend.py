@@ -30,8 +30,8 @@ def run():
 
     http_server = tornado.httpserver.HTTPServer(app, xheaders=True)
     http_server.listen(config.backend.port)
-    tornado.ioloop.IOLoop.instance().start()
     VmtsLogger('info').info('Vmts database backend started.')
+    tornado.ioloop.IOLoop.instance().start()
 
 if __name__ == "__main__":
     run()

@@ -5,7 +5,7 @@ try:
     from vmts_logger import VmtsLogger
     from vmts_exceptions import *
     from vmts_backend_client import query
-    from vmts_redis_model import Model
+    from vmts_orm import Model
 except:
     raise ImportError('Vmts environment had not be initialized.')
 
